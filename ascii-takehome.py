@@ -1,5 +1,3 @@
-from flask import jsonify
-
 # def create_canvas(rows=10, cols=10):
 #     """create canvas - not part of assignment but used for testing"""
 #     matrix = [[" " for x in range(cols)] for y in range(rows)]
@@ -9,7 +7,6 @@ from flask import jsonify
 CANVAS = [[" " for x in range(10)] for y in range(10)]
 
 
-@app.route('/api/add_shape', methods=['POST'])
 def add_shape(shape):
     """add shape - assume only rect - loop thru the shape and input onto the canvas"""
     for idx_row, row in enumerate(shape):
@@ -39,11 +36,9 @@ def change_char(rectangle, char):
             if item != ' ':
                 rectangle[idx_row][idx_col] = char
 
-### DID NOT COMPLETE ##
 
-
-@app.route('/api/translate', methods=['POST'])
 def translate(rectangle, axis, num):
+    ### DID NOT COMPLETE ##
     """ Translate (move left, right, up, or down)
     Translating on the X-axis will cause the rectangle to move left and right. 
     Translating on the Y-axis will cause the rectangle to move up and down.
@@ -68,7 +63,6 @@ def translate(rectangle, axis, num):
         return new_matrix
 
 
-@app.route('/api/create_rect', methods=['POST'])
 def clear():
     """get rid of all shape on canvas"""
     for idx_row, row in enumerate(CANVAS):
@@ -76,10 +70,9 @@ def clear():
             if item != ' ':
                 CANVAS[idx_row][idx_col] = ' '
 
-    return jsonify('canvas is cleared')
+    return ('canvas is cleared')
 
 
-@app.route('/api/render', methods=['POST'])
 def render():
     """render the canvas"""
     lst = []
@@ -88,4 +81,4 @@ def render():
 
     str_ver = '\n'.join(lst)
 
-    return jsonify(str_ver)
+    print(str_ver)
